@@ -7,13 +7,13 @@ echo $3
 ### Set initial time of file
 LTIME=`stat -c %Z ./$1`
 
-while true    
+while true
 do
   ATIME=`stat -c %Z ./$1`
-  
+
   if [[ "$ATIME" != "$LTIME" ]]
-  then    
-    pandoc -s $1 --bibliography $2 --filter pandoc-citeproc elsevier-harvard.csl -o output/$3 -c paper_style.css
+  then
+    Rscript -e "rmarkdown::render('$1', output_file='output/$3')"
     LTIME=$ATIME
     echo Done.
   fi

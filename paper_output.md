@@ -15,12 +15,7 @@ output:
 bibliography: references.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
-library(dplyr)
-library(purrr)
-```
 
 ## Submission
 
@@ -44,16 +39,12 @@ We are doing this experiment using pollen data as these are the most widely used
 
 ## Pollen-Based Reconstruction Practice
 
-```{r method_tables, echo=FALSE}
-pol_mthd <- suppressMessages(readr::read_csv("data/reconst_method.csv"))
 
-```
 
-This paper surveyed `r nrow(pol_mthd)` papers dealing with paleoclimate reconstruction from pollen data spanning the period from `r range(pol_mthd[,"Paper Year"])[1]` to `r range(pol_mthd[,"Paper Year"])[2]`.  Reconstructions include `r sum(stringr::str_detect(pol_mthd$Region, "Europe"))` papers from Europe, and `r sum(stringr::str_detect(pol_mthd$Region, "North America"))` from North America, as well as reconstructions from China, Russia, Africa and New Zealand (Table 1).
+This paper surveyed 31 papers dealing with paleoclimate reconstruction from pollen data spanning the period from 2002 to 2018.  Reconstructions include 9 papers from Europe, and 10 from North America, as well as reconstructions from China, Russia, Africa and New Zealand (Table 1).
 
-```{r site_table, echo=FALSE}
-pol_mthd %>% head() %>% DT::datatable(options = list(dom = "t"))
-```
+<!--html_preserve--><div id="htmlwidget-9b9d76b64207e6ba6f3b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9b9d76b64207e6ba6f3b">{"x":{"filter":"none","data":[["1","2","3","4","5","6"],["Climatic changes in Eurasia and Africa at the last glacial maximum and mid-Holocene: reconstruction from pollen data using inverse vegetation modelling","Reconciling divergent trends and millennial variations in Holocene temperatures","Pollen-Based Quantitative Reconstruction of Holocene Climate Changes in the Daihai Lake Area, Inner Mongolia, China","A BAYESIAN SPATIOTEMPORAL MODEL FOR RECONSTRUCTING CLIMATE FROM MULTIPLE POLLEN RECORDS","Quantitative pollen-based climate reconstruction in central Japan: Application to surface and Late Quaternary spectra","Last Glacial pollen-climate reconstructions from Northland, New Zealand"],["Wu et al.","Marsicek et al","Xu et al.","Holmstr ?om et al","Nakagawa et al.","Newnham et al."],[2007,2018,2010,2015,2002,2017],["https://doi.org/10.1007/s00382-007-0231-3","doi:10.1038/nature25464","10.1175/2009JCLI3155.1","10.1214/15-AOAS832","https://doi.org/10.1016/S0277-3791(02)00014-8","https://doi.org/10.1002/jqs.2955"],["Eurasia","North America; Europe","China: Inner Mongolia","Europe: southern Fennoscandia","Japan","South Pacific: New Zealand"],["Africa","CRU 1961-1990; WorldClim","1961-1990","1961-1990 Climate Normals data from grids of nearby meteorological stations","1961-1990 climate normals for Japan","average monthly climate data from local meteorological stations"],["Leemans and Cramer 0.5 degree resolution grid global dataset","New et al. (2002);  Hijmans et al. (2005)","Daily records from 243  met stations in northern China from China National Weather Service",null,"Japan Meteorological Agency","Leathwick and Stephens (unpublished report 1998)"],["Leemans and Cramer (1991)",null,null,null,null,"Leathwick (2001)"],["Prentice et al. (1996);  Jolly  et al. (1998b);  Tarasov et al. (1998); Elenga et al. (2000); Tarasov et al. (2000)","NAMPD (Whitmore et al 2005); EMPD (Davis et al. 2013)","237 surface  pollen  samples  taken  from  Mongolia","Sepp ̈a and Birks (2001); Sepp ̈a et al. (2009); Antonsson et al. (2006)","Gotanda et al. (2002);  Japanese Pollen Publication Database","New Zealand pre-deforestation pollen dataset; Wilmshurst et  al (2007) DOI: 10.1002/jqs.1135"],[null,null,null,null,null,null],[null,null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Paper Title<\/th>\n      <th>Paper Author<\/th>\n      <th>Paper Year<\/th>\n      <th>DOI<\/th>\n      <th>Region<\/th>\n      <th>Climate Source<\/th>\n      <th>Climate_Ref<\/th>\n      <th>URL<\/th>\n      <th>Pollen Data<\/th>\n      <th>Available<\/th>\n      <th>Clim Methods<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 ## A Need for Benchmarks
 
@@ -107,30 +98,7 @@ In addition to plotting, we evaluate the predictions using four scoring metrics:
 
 The benchmarking method proposed above provides an opportunity to examine the impacts of base data choice and resolution, by providing a framework with which to test multiple pollen based climate models, multiple base climate data and multiple resolutions of the climate data.
 
-```{r climate_figures, echo = FALSE}
-
-clim_files <- list.files("../benchmark-data/Climate/Worldclim/",
-                         pattern = "worldclim", full.names = TRUE)
-
-climate <- clim_files %>%
-  purrr::map(readr::read_csv) %>%
-  purrr::reduce(left_join,
-                by = c("ID2", "LONDD", "LATDD", "ELEVATION"))
-
-colnames(climate)[5:8] <- c("0.5", "10", "2.5", "5.0")
-
-climate_grid <- climate %>%
-  tidyr::gather(key, value, -ID2, -LONDD, -LATDD, -ELEVATION) %>%
-  filter(LONDD > -100 & LONDD < -60 & LATDD > 30 & LATDD < 50)
-
-library(ggplot2)
-
-ggplot(data = climate_grid) +
-  geom_point(aes(x = LATDD, y = value / 10), size = 0.5) +
-  facet_wrap(~key) +
-  xlab("Latitude") +
-  ylab("July Temperature")
-```
+![](paper_output_files/figure-html/climate_figures-1.png)<!-- -->
 
 Within the benchmarking system a set of curated datasets are provided.  These datasets are fully described and returned as data objects from the `pcmip-data` package.  This package provides certain standardized elements, for example, data extraction based on the parent calibration dataset.
 

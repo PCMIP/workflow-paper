@@ -1,38 +1,51 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
-  <meta name="date" content="2018-02-22" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Workflow Paper</title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="paper_style.css" type="text/css" />
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="paper_style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<div id="header">
+<header id="title-block-header">
 <h1 class="title">Workflow Paper</h1>
-<h3 class="date">February 22, 2018</h3>
-</div>
-<p><code>{r setup, include=FALSE} knitr::opts_chunk$set(echo = TRUE) library(dplyr) library(purrr)</code></p>
+</header>
+<p>```{r setup, include=FALSE} knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)</p>
+<p>library(dplyr) library(purrr) ```</p>
 <h2 id="submission">Submission</h2>
 <h3 id="open-quaternary">Open Quaternary</h3>
 <p><em>Methods papers that outline and test new techniques and discuss potential applications and significance of the technique. In addition, papers that critique or modify extant methodologies and approaches are welcome. Authors should provide a detailed summary of the protocol followed and establish replicability within the body of the paper.</em></p>
 <p>Submissions should be between 6,000 and 8,000 words in length for Research, Methods, and Review papers, although submissions of all lengths will be considered.</p>
 <h2 id="abstract">Abstract</h2>
 <h2 id="introduction">Introduction</h2>
-<p>A number of papers use multiple models to reconstruct past climates from pollen, using a number of methods. These methods are described in Chevalier &amp;al. In general comparison of results between proxy records, or the same proxy using different methods show both similarities and significant differences. (Examples here?). However, diagnosing the reasons for the differences is difficult. For example, if chironomid and pollen records from the same core show differences in their down-core reconstruction <span class="citation">(e.g., Rosén et al. 2003 &amp; others?)</span>, it may be due to bioligical aspects of the organism-climate relations, but it may also be due simply to differences in the modern samples or modern climate used, or perhaps the size and extent of the training set. If two reconstructions are performed using different methods on the same proxy and on the same core, and there are differences in the reconstruction, it is not clear which may be &quot;correct&quot;, unless all of the biases and other issues of the various methods are understood. Comparing reconstructions in some region from different studies is similarly made difficult if the methods or data differed in the studies. There remain many questions about the various methodologies used in paleoclimate reconstruction, especially as newer ones are developed and therefore have less experience associated with them. In order to quantitatively evaluate the impact of methodological choices on resulting reconstruction, a framework for systematic comparison of different methods using a standardized set of datasets is needed. This kind of formal comparison is common in the climate modeling community (CMIP, PMIP, etc.) (Taylor, et al. 2012, Braconnot, et al. 2012, etc), but has not become standard in evaluating choices in paleoclimate reconstructions.</p>
-<p>We are doing this experiment using pollen data as these are the most widely used paleoclimate proxy records for Holocene-scale reconstructions. Importantly, continental databases are available from North AMerica, Europe, and being developed for other parts of the world. There is therefore sufficient data available to make tests such the importance of sample domain on reconstructions, or site density, length of environment gradient. Studies can be attempted on local, regional but also continetal and intercontinental scales. We anticipate that the results of these studies will be applicable to any proxy record.</p>
+<p>A number of papers use multiple pollen-based reconstruction models to reconstruct past climates. These methods are described in Chevalier &amp;al. <span class="citation" data-cites="chevalierinpress">(<span class="citeproc-not-found" data-reference-id="chevalierinpress"><strong>???</strong></span>)</span>. Comparisons among proxy records, or using the same proxy using with different reconstruction methods show both similarities and significant differences. Because of differences in spatial domain, method application and underlying datasets among papers it is often difficult to compare results between studies. For example, if chironomid and pollen records from the same core show differences in their down-core reconstruction <span class="citation" data-cites="rosen2003diatom">(e.g., Rosén et al. 2003)</span>, it may be due to bioligical aspects of the organism-climate relations, but it may also be due simply to differences in the modern samples or modern climate used, or perhaps the size and extent of the different training set. If two reconstructions are performed using different methods on the same proxy and on the same core, and there are differences in the reconstruction, it is not clear which may be “correct”, unless all of the biases and other issues of the various methods are understood <span class="citation" data-cites="peyron2011holocene brewer2008climate">(e.g., Peyron et al. 2011; Brewer et al. 2008)</span>. Comparing reconstructions in some region from different studies is similarly made difficult if the methods or data differed in the studies.</p>
+<p>There remain many questions about the various methodologies used in paleoclimate reconstruction, especially as newer ones are developed and therefore have less experience associated with them. In order to quantitatively evaluate the impact of methodological choices on resulting reconstruction, a framework for systematic comparison of different methods using a standardized set of datasets is needed. This kind of formal comparison is common in the climate modeling community <span class="citation" data-cites="taylor2012overview braconnot2012evaluation">(CMIP: Taylor, Stouffer, and Meehl 2012; PMIP: Braconnot et al. 2012)</span>, but has not become standard in evaluating choices in proxy-based paleoclimate reconstructions.</p>
+<p>We are doing this experiment using pollen data as these are the most widely used paleoclimate proxy records for Holocene-scale reconstructions. Importantly, continental databases are available from North America, Europe, and being developed for other parts of the world <span class="citation" data-cites="williams2017neotoma">(Williams et al. 2018)</span>, and new paleogeoinformatics approaches have provided the computational support to enable these methods to be generated as part of a reproducible workflow <span class="citation" data-cites="brewer2012paleoecoinformatics">(<span class="citeproc-not-found" data-reference-id="brewer2012paleoecoinformatics"><strong>???</strong></span>)</span>. There is now sufficient data available to test questions about the importance of sample domain, site density, or the length of environment gradient on paleoclimate reconstructions. Studies can be attempted on local, regional but also at continental and intercontinental scales. We anticipate that the results of these studies will be applicable to any proxy record.</p>
 <h2 id="pollen-based-reconstruction-practice">Pollen-Based Reconstruction Practice</h2>
+<p>```{r method_tables} pol_mthd &lt;- readr::read_csv(‘data/reconst_method.csv’)</p>
+<p>```</p>
+<p>This paper surveyed <code>r nrow(pol_mthd)</code> papers dealing with paleoclimate reconstruction from pollen data spanning the period from <code>r range(pol_mthd[,&quot;Paper Year&quot;])[1]</code> to <code>r range(pol_mthd[,&quot;Paper Year&quot;])[2]</code>. Reconstructions include <code>r sum(stringr::str_detect(pol_mthd$Region, 'Europe'))</code> papers from Europe, and <code>r sum(stringr::str_detect(pol_mthd$Region, 'North America'))</code> from North America, as well as reconstructions from China, Russia, Africa and New Zealand (Table 1).</p>
+<p><code>{r site_table} pol_mthd %&gt;% head() %&gt;% DT::datatable(options=list(dom=&quot;t&quot;))</code></p>
 <h2 id="a-need-for-benchmarks">A Need for Benchmarks</h2>
 <p>Benchmarking climate reconstruction models is necessary because benchmarks provides a common platform under which methods can be tested to a set of pre-defined standards. This then allows us to test hypotheses about different methods, examine the causes of method divergence and convergence and ask questions about how underlying physical and ecological processes might affect model reliability, precision and accuracy in a paleoecological context.</p>
+<p><img src="figures/benchmark_schematic.png" style="width:50.0%" /></p>
 <h2 id="methods">Methods</h2>
 <p>Broad Outline</p>
 <h3 id="datasets">Datasets</h3>
 <h4 id="pollen-data">Pollen Data</h4>
-<p>North American Modern Pollen Dataset version 1.8 <span class="citation">(NAMPD; Whitmore et al. 2005)</span>: The NAMPD v1.8 contains 4833 modern pollen samples obtained from the published and unpublished sources, along with matched climate and vegetation data. It is a research dataset, and therefore does not contain all of the pollen counts; for example rare and aquatic taxa are excluded. It is in the form of a series of tables in an excel file.</p>
+<p>North American Modern Pollen Dataset version 1.8 <span class="citation" data-cites="whitmore2005modern">(NAMPD; Whitmore et al. 2005)</span>: The NAMPD v1.8 contains 4833 modern pollen samples obtained from the published and unpublished sources, along with matched climate and vegetation data. It is a research dataset, and therefore does not contain all of the pollen counts; for example rare and aquatic taxa are excluded. It is in the form of a series of tables in an excel file.</p>
 <h4 id="climate-data">Climate Data</h4>
-<p>One question of interest is the importance of climate dataset in affecting climate reconstructions <span class="citation">(Fortin and Gajewski 2012; Ladd, Way, and Viau 2015)</span>. Although a number of methods have been used to assign climate data to pollen samples, for over 20 years, the most common method is to use widely-available gridded datsets(CRU,New et al; WorldClim; BEst;). These are available in different resolutions whcih may affect the results obtained. In addition, the various products have been shown to have biases in data-sparse regions, for example the Arctic <span class="citation">(R. G. Way and Bonnaventure 2015)</span>, and these can affect the results obtained, at least in a regional scale <span class="citation">(Fortin and Gajewski 2012)</span>. We therefore obtained xx datasets to compare the extent to which different datasets are affected by the climate data. For example, MAT produces reconstructions with higher high frequency variability, in part dependent on the resolution of the climate data.</p>
+<p>One question of interest is the importance of climate dataset in affecting climate reconstructions <span class="citation" data-cites="fortin2012potential ladd2015impact">(Fortin and Gajewski 2012; Ladd, Way, and Viau 2015)</span>. Although a number of methods have been used to assign climate data to pollen samples, for over 20 years, the most common method is to use widely-available gridded datsets(CRU,New et al; WorldClim; BEst;). These are available in different resolutions whcih may affect the results obtained. In addition, the various products have been shown to have biases in data-sparse regions, for example the Arctic <span class="citation" data-cites="way2015testing">(Way and Bonnaventure 2015)</span>, and these can affect the results obtained, at least in a regional scale <span class="citation" data-cites="fortin2012potential">(Fortin and Gajewski 2012)</span>. We therefore obtained xx datasets to compare the extent to which different datasets are affected by the climate data. For example, MAT produces reconstructions with higher high frequency variability, in part dependent on the resolution of the climate data.</p>
 <h3 id="methods-1">Methods</h3>
 <p>Pollen-based climate reconstruction has a number of implementations, some of which are implemented directly in R, others which have been implemented in other programming languages or as executable scripts. This benchmarking approach uses wrappers for these methods, providing the opportunity to link to individual methods in a consistent manner, while still retaining the flexibility inherent to individual models or their various implementations.</p>
 <table>
@@ -47,12 +60,12 @@
 <tr class="odd">
 <td>MAT</td>
 <td><code>rioja</code></td>
-<td><span class="citation">(Juggins 2017)</span></td>
+<td><span class="citation" data-cites="rioja2017">(Juggins 2017)</span></td>
 </tr>
 <tr class="even">
 <td>WA</td>
 <td><code>rioja</code></td>
-<td><span class="citation">(Juggins 2017)</span></td>
+<td><span class="citation" data-cites="rioja2017">(Juggins 2017)</span></td>
 </tr>
 </tbody>
 </table>
@@ -62,25 +75,23 @@
 <p>In the context of paleoclimatic reconstruction careful consideration is required when generalizing from cross-validation performance to potential reconstruction performance (Jackson 2012). (need to expand on this; may belong in a different place)</p>
 <p>Here we perform 10-fold cross-validation. This means that in each fold the test set comprises 10% of the full training dataset and after the ten folds every observation in the modern calibration dataset will have been in the test set.</p>
 <p>We first evaluate cross-validation experiments by plotting the observed versus predicted covariate for each sample. We fit a linear regression to this and compare the slope to the one-to-one line. For a perfect model, the predicted values would fall directly on the one-to-one line. If the linear regression slope is less than one this indicates a shrinkage to the mean in the predictions. Slopes greater than one are not common in the context of the models we will be using, but they would indicate too large a variance in the predictions.</p>
-<p>In addition to plotting, we evaluate the predictions using four scoring metrics: mean square error (MSE), mean absolute error (MAE), empirical coverage of the 95% credible interval, and continuous rank probability score (CRPS). These are standard in statistics and each emphasize different predictive skill. MSE measures prediction accuracy of the mean while MAE emphasizes prediction accuracy of the median. For both MSE and MAE lower values represent better predictions. MSE and MAE do not contain much information on the models' skill in variance, for that we use coverage. Coverage is how many of the e.g. 95% credible intervals of the predicted covariate overlap with the observed covariate -- if the empirical coverage for a model's predictions is close to the nominal rate (in this case, 95%) then we can say the model has a good variance and meaningful uncertainties. CRPS is a combined metric for the accuracy of both the mean and the spread of the uncertainty and is especially useful for models that generate a full predictive distribution (Gneiting 2011). Lower CRPS values represent better predictions.</p>
+<p>In addition to plotting, we evaluate the predictions using four scoring metrics: mean square error (MSE), mean absolute error (MAE), empirical coverage of the 95% credible interval, and continuous rank probability score (CRPS). These are standard in statistics and each emphasize different predictive skill. MSE measures prediction accuracy of the mean while MAE emphasizes prediction accuracy of the median. For both MSE and MAE lower values represent better predictions. MSE and MAE do not contain much information on the models’ skill in variance, for that we use coverage. Coverage is how many of the e.g. 95% credible intervals of the predicted covariate overlap with the observed covariate – if the empirical coverage for a model’s predictions is close to the nominal rate (in this case, 95%) then we can say the model has a good variance and meaningful uncertainties. CRPS is a combined metric for the accuracy of both the mean and the spread of the uncertainty and is especially useful for models that generate a full predictive distribution (Gneiting 2011). Lower CRPS values represent better predictions.</p>
 <h2 id="working-example">Working Example</h2>
 <h3 id="climate-datasets">Climate datasets</h3>
 <p>The benchmarking method proposed above provides an opportunity to examine the impacts of base data choice and resolution, by providing a framework with which to test multiple pollen based climate models, multiple base climate data and multiple resolutions of the climate data.</p>
-<pre class="{r}"><code>clim_files &lt;- list.files(&#39;../benchmark-data/Climate/Worldclim/&#39;,
-                         pattern=&quot;worldclim&quot;, full.names = TRUE)
-
-climate &lt;- clim_files %&gt;% 
-  purrr::map(readr::read_csv) %&gt;% 
-  purrr::reduce(left_join, 
-                by=c(&#39;ID2&#39;, &#39;LONDD&#39;, &#39;LATDD&#39;, &#39;ELEVATION&#39;))
-
-colnames(climate)[5:8] &lt;- c(&quot;0.5&quot;, &quot;10&quot;, &quot;2.5&quot;, &quot;5.0&quot;)
-</code></pre>
+<p>```{r climate_figures, echo = FALSE}</p>
+<p>clim_files &lt;- list.files(‘../benchmark-data/Climate/Worldclim/’, pattern=“worldclim”, full.names = TRUE)</p>
+<p>climate &lt;- clim_files %&gt;% purrr::map(readr::read_csv) %&gt;% purrr::reduce(left_join, by=c(‘ID2’, ‘LONDD’, ‘LATDD’, ‘ELEVATION’))</p>
+<p>colnames(climate)[5:8] &lt;- c(“0.5”, “10”, “2.5”, “5.0”)</p>
+<p>climate_grid &lt;- climate %&gt;% tidyr::gather(key, value, -ID2, -LONDD, -LATDD, -ELEVATION) %&gt;% filter(LONDD &gt; -100 &amp; LONDD &lt; -60 &amp; LATDD &gt; 30 &amp; LATDD &lt; 50)</p>
+<p>library(ggplot2)</p>
+<p>ggplot(data = climate_grid) + geom_point(aes(x = LATDD, y = value / 10), size = 0.5) + facet_wrap(~key) + xlab(“Latitude”) + ylab(“July Temperature”)</p>
+<p>```</p>
 <p>Within the benchmarking system a set of curated datasets are provided. These datasets are fully described and returned as data objects from the <code>pcmip-data</code> package. This package provides certain standardized elements, for example, data extraction based on the parent calibration dataset.</p>
 <p>To analyze the effects of input data on the calibration methods we began by asking a simple, but illustrative question.</p>
 <h2 id="results">Results</h2>
 <h3 id="climate-resolution">Climate Resolution</h3>
-<p>Climate data was obtained from WorldClim at four different native resolutions, from the 10, 5, 2.5 and 0.5 arcminute data products [REF]. These data were then overlain on the location data for Whitmore et al. <span class="citation">(2005)</span> described earlier.</p>
+<p>Climate data was obtained from WorldClim at four different native resolutions, from the 10, 5, 2.5 and 0.5 arcminute data products [REF]. These data were then overlain on the location data for Whitmore et al. <span class="citation" data-cites="whitmore2005modern">(2005)</span> described earlier.</p>
 <h2 id="conclusion">Conclusion</h2>
 <h2 id="references">References</h2>
 <?xml version="1.0" encoding="utf-8"?>
@@ -323,6 +334,12 @@ colnames(climate)[5:8] &lt;- c(&quot;0.5&quot;, &quot;10&quot;, &quot;2.5&quot;,
   </bibliography>
 </style>
 <div id="refs" class="references">
+<div id="ref-braconnot2012evaluation">
+<p>Braconnot, Pascale, Sandy P Harrison, Masa Kageyama, Patrick J Bartlein, Valerie Masson-Delmotte, Ayako Abe-Ouchi, Bette Otto-Bliesner, and Yan Zhao. 2012. “Evaluation of Climate Models Using Palaeoclimatic Data.” <em>Nature Climate Change</em> 2 (6). Nature Publishing Group: 417.</p>
+</div>
+<div id="ref-brewer2008climate">
+<p>Brewer, S, J Guiot, MF Sánchez-Goñi, and S Klotz. 2008. “The Climate in Europe During the Eemian: A Multi-Method Approach Using Pollen Data.” <em>Quaternary Science Reviews</em> 27 (25-26). Elsevier: 2303–15.</p>
+</div>
 <div id="ref-fortin2012potential">
 <p>Fortin, M-C, and K Gajewski. 2012. “Potential Problems with the Use of Gridded Climate Data in Regional Quantitative Paleoenvironmental Studies from Data-Poor Regions.” <em>Journal of Paleolimnology</em> 48 (3). Springer: 641–50.</p>
 </div>
@@ -332,14 +349,23 @@ colnames(climate)[5:8] &lt;- c(&quot;0.5&quot;, &quot;10&quot;, &quot;2.5&quot;,
 <div id="ref-ladd2015impact">
 <p>Ladd, M, RG Way, and AE Viau. 2015. “The Impact of Using Different Modern Climate Data Sets in Pollen-Based Paleoclimate Reconstructions of North America.” <em>Quaternary Science Reviews</em> 112. Elsevier: 78–85.</p>
 </div>
+<div id="ref-peyron2011holocene">
+<p>Peyron, Odile, Simon Goring, Isabelle Dormoy, Ulrich Kotthoff, Jörg Pross, Jacques-Louis De Beaulieu, Ruth Drescher-Schneider, Boris Vannière, and Michel Magny. 2011. “Holocene Seasonality Changes in the Central Mediterranean Region Reconstructed from the Pollen Sequences of Lake Accesa (Italy) and Tenaghi Philippon (Greece).” <em>The Holocene</em> 21 (1). Sage Publications Sage UK: London, England: 131–46.</p>
+</div>
 <div id="ref-rosen2003diatom">
 <p>Rosén, Peter, Ulf Segerström, Lars Eriksson, and Ingemar Renberg. 2003. “Do Diatom, Chironomid, and Pollen Records Consistently Infer Holocene July Air Temperature? A Comparison Using Sediment Cores from Four Alpine Lakes in Northern Sweden.” <em>Arctic, Antarctic, and Alpine Research</em> 35 (3). BioOne: 279–90.</p>
+</div>
+<div id="ref-taylor2012overview">
+<p>Taylor, Karl E, Ronald J Stouffer, and Gerald A Meehl. 2012. “An Overview of Cmip5 and the Experiment Design.” <em>Bulletin of the American Meteorological Society</em> 93 (4). American Meteorological Society: 485–98.</p>
 </div>
 <div id="ref-way2015testing">
 <p>Way, Robert G, and Philip P Bonnaventure. 2015. “Testing a Reanalysis-Based Infilling Method for Areas with Sparse Discontinuous Air Temperature Data in Northeastern Canada.” <em>Atmospheric Science Letters</em> 16 (3). Wiley Online Library: 398–407.</p>
 </div>
 <div id="ref-whitmore2005modern">
 <p>Whitmore, J, K Gajewski, M Sawada, JW Williams, B Shuman, PJ Bartlein, T Minckley, et al. 2005. “Modern Pollen Data from North America and Greenland for Multi-Scale Paleoenvironmental Applications.” <em>Quaternary Science Reviews</em> 24 (16). Elsevier: 1828–48.</p>
+</div>
+<div id="ref-williams2017neotoma">
+<p>Williams, John W., Eric C. Grimm, Jessica Blois, Donald F. Charles, Edward Davis, Simon J. Goring, Russell W. Graham, et al. 2018. “The Neotoma Paleoecology Database: A Multi-Proxy, International Community-Curated Data Resource.” <em>Quaternary Research</em> 89: 156–77.</p>
 </div>
 </div>
 </body>
